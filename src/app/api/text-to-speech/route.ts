@@ -31,7 +31,7 @@ export async function POST(request: NextRequest) {
     // Use ElevenLabs SDK to generate speech
     const audioStream = await client.textToSpeech.convert(voiceId, {
       text: text,
-      model_id: modelId,
+      modelId: modelId,
       voice_settings: {
         stability: 0.5,
         similarity_boost: 0.75,
