@@ -308,6 +308,7 @@ export default function MealPlanDisplay({
       {/* Meal Detail Modal - Works for both Mobile and Desktop */}
       {selectedMeal && (
         <MealDetailModal
+          key={selectedMeal.id}
           meal={selectedMeal}
           onClose={() => setSelectedMeal(null)}
           isFavorited={favorites.some((f) => f.id === selectedMeal.id)}

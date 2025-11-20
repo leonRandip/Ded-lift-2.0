@@ -84,7 +84,7 @@ export default function ProgressChart() {
   };
 
   return (
-    <div className="liquid-glass-card p-4 md:p-6 rounded-3xl">
+    <div className="liquid-glass-card p-[5px] md:p-6 rounded-3xl">
       {/* Tab Navigation */}
       <div className="flex items-center space-x-3 mb-6 overflow-x-auto pb-2 -mx-2 px-2 scrollbar-hide">
         <button

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useLayoutEffect } from "react";
+import { useState } from "react";
 import Image from "next/image";
 import { Meal } from "./MealPlanPage";
 import { useTextToSpeech } from "@/hooks/useTextToSpeech";
@@ -18,6 +18,7 @@ export default function MealDetailModal({
   isFavorited: initialFavorited = false,
   onToggleFavorite,
 }: MealDetailModalProps) {
+  // Use initialFavorited as initial state - component will remount when meal.id changes (via key prop)
   const [isFavorited, setIsFavorited] = useState(initialFavorited);
   const { speak, stop, isLoading, isPlaying } = useTextToSpeech();
 
@@ -26,11 +27,6 @@ export default function MealDetailModal({
     lunch: "Lunch",
     dinner: "Dinner",
   };
-
-  // Sync favorite state when meal changes
-  useLayoutEffect(() => {
-    setIsFavorited(initialFavorited);
-  }, [initialFavorited, meal.id]);
 
   const handleFavoriteToggle = () => {
     const newState = !isFavorited;
