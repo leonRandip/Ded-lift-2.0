@@ -26,7 +26,7 @@ export default function ColorPalettePicker() {
       {/* Color Palette Button */}
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="fixed top-6 md:top-6 right-6 z-50 w-16 h-16 md:w-14 md:h-14 liquid-glass-card rounded-full flex items-center justify-center hover:bg-white/30 transition-all duration-300"
+        className="fixed top-4 right-4 z-50 w-14 h-14 md:w-14 md:h-14 liquid-glass-card rounded-full flex items-center justify-center hover:bg-white/30 transition-all duration-300"
       >
         <svg
           className="w-5 h-5 text-[var(--color-9)]"

@@ -114,9 +114,9 @@ export default function MealPlanDialog({
         onClick={onClose}
       />
       {/* Dialog */}
-      <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
+      <div className="fixed inset-0 z-50 flex items-center justify-center p-4 pb-24 md:pb-4">
         <div
-          className="liquid-glass-card rounded-2xl p-6 md:p-8 w-full max-w-2xl max-h-[90vh] overflow-y-auto shadow-2xl"
+          className="liquid-glass-card rounded-2xl p-6 md:p-8 w-full max-w-2xl max-h-[calc(90vh-6rem)] md:max-h-[90vh] overflow-y-auto shadow-2xl"
           style={{
             backdropFilter: "blur(25px)",
             WebkitBackdropFilter: "blur(25px)",

@@ -137,12 +137,27 @@ export function ColorPaletteProvider({ children }: { children: ReactNode }) {
       };
       window.addEventListener("resize", handleResize);
       
+      // Prevent background from changing on scroll by re-applying on scroll
+      const handleScroll = () => {
+        // Re-apply background to ensure it stays fixed
+        updateBackgroundImage(palette, theme);
+      };
+      window.addEventListener("scroll", handleScroll, { passive: true });
+      
       // Cleanup on unmount
       return () => {
         window.removeEventListener("resize", handleResize);
+        window.removeEventListener("scroll", handleScroll);
       };
     }
   }, []); // Only run once on mount
+
+  // Update background when palette or theme changes
+  useLayoutEffect(() => {
+    if (initializedRef.current) {
+      updateBackgroundImage(palette, theme);
+    }
+  }, [palette, theme]);
 
   return (
     <ColorPaletteContext.Provider

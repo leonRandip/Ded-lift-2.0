@@ -30,7 +30,7 @@ export default function Navbar() {
       </button>
 
       {/* Compact Floating Navbar */}
-      <nav className="fixed top-5 left-6 md:left-1/2 md:-translate-x-1/2 z-40 liquid-glass-card rounded-full px-6 py-2 md:px-6 md:py-0 shadow-xl overflow-visible">
+      <nav className="fixed top-4 left-4 right-20 md:left-1/2 md:right-auto md:-translate-x-1/2 z-40 liquid-glass-card rounded-full px-4 py-2.5 md:px-6 md:py-2.5 shadow-xl overflow-visible max-w-fit md:max-w-none flex items-center h-14">
         <div className="flex items-center space-x-4 md:space-x-6">
           {/* Logo */}
           <div className="flex items-center flex-shrink-0">

@@ -83,6 +83,56 @@ export async function POST(request: NextRequest) {
           { status: 401 }
         );
       }
+      // Handle model errors
+      if (error.message.includes("model") || error.message.includes("deprecated")) {
+        console.error("Model error, trying fallback model");
+        // Try with a different model as fallback
+        try {
+          const fallbackClient = new ElevenLabsClient({
+            apiKey: process.env.ELEVENLABS_API_KEY || "",
+          });
+          const fallbackStream = await fallbackClient.textToSpeech.convert(
+            body.voiceId || "21m00Tcm4TlvDq8ikWAM",
+            {
+              text: body.text,
+              modelId: "eleven_turbo_v2", // Fallback model
+              voiceSettings: {
+                stability: 0.5,
+                similarityBoost: 0.75,
+              },
+            }
+          );
+          const reader = fallbackStream.getReader();
+          const chunks: Uint8Array[] = [];
+          try {
+            while (true) {
+              const { done, value } = await reader.read();
+              if (done) break;
+              if (value) {
+                chunks.push(value);
+              }
+            }
+          } finally {
+            reader.releaseLock();
+          }
+          const totalLength = chunks.reduce((acc, chunk) => acc + chunk.length, 0);
+          const audioBuffer = new Uint8Array(totalLength);
+          let offset = 0;
+          for (const chunk of chunks) {
+            audioBuffer.set(chunk, offset);
+            offset += chunk.length;
+          }
+          return new NextResponse(audioBuffer, {
+            status: 200,
+            headers: {
+              "Content-Type": "audio/mpeg",
+              "Content-Length": audioBuffer.length.toString(),
+            },
+          });
+        } catch (fallbackError) {
+          console.error("Fallback model also failed:", fallbackError);
+        }
+      }
     }
     
     return NextResponse.json(

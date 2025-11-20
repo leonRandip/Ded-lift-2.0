@@ -92,7 +92,7 @@ export default function TextToSpeechButton({
               className="fixed inset-0 z-40"
               onClick={() => setShowMenu(false)}
             />
-            <div className="absolute right-0 top-12 z-50 liquid-glass-card rounded-xl p-2 shadow-xl min-w-[200px]">
+            <div className="fixed bottom-20 left-4 right-4 md:absolute md:right-0 md:top-12 md:bottom-auto md:left-auto z-50 liquid-glass-card rounded-xl p-2 shadow-xl min-w-[200px]">
               {isPlaying ? (
                 <button
                   onClick={handleStop}
@@ -209,7 +209,7 @@ export default function TextToSpeechButton({
             className="fixed inset-0 z-40"
             onClick={() => setShowMenu(false)}
           />
-          <div className="absolute right-0 top-12 z-50 liquid-glass-card rounded-xl p-2 shadow-xl min-w-[200px]">
+          <div className="fixed bottom-20 left-4 right-4 md:absolute md:right-0 md:top-12 md:bottom-auto md:left-auto z-50 liquid-glass-card rounded-xl p-2 shadow-xl min-w-[200px]">
             <button
               onClick={handleReadSelected}
               disabled={isLoading}

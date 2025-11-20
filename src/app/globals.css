@@ -7,6 +7,10 @@ html {
   text-size-adjust: 100% !important;
   touch-action: manipulation;
   -webkit-touch-callout: none;
+  overflow-x: hidden !important;
+  overflow-y: auto;
+  height: 100%;
+  width: 100%;
 }
 
 body {
@@ -14,7 +18,26 @@ body {
   -ms-text-size-adjust: 100% !important;
   text-size-adjust: 100% !important;
   touch-action: manipulation;
-  overflow-x: hidden;
+  overflow-x: hidden !important;
+  overflow-y: auto;
+  height: 100%;
+  width: 100%;
+  position: relative;
+  margin: 0;
+  padding: 0;
+}
+
+/* Prevent horizontal scroll */
+* {
+  max-width: 100%;
+}
+
+/* Prevent scrolling past content */
+html,
+body {
+  overscroll-behavior: none;
+  overscroll-behavior-y: none;
+  overscroll-behavior-x: none;
 }
 
 * {
