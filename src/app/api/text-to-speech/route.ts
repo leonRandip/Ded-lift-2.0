@@ -97,6 +97,12 @@ export async function POST(request: NextRequest) {
       if (error.message.includes("model") || error.message.includes("deprecated")) {
         console.error("Model error, trying fallback model");
         // Try with a different model as fallback
+        if (!body.text || typeof body.text !== "string") {
+          return NextResponse.json(
+            { error: "Text is required" },
+            { status: 400 }
+          );
+        }
         try {
           const fallbackClient = new ElevenLabsClient({
             apiKey: process.env.ELEVENLABS_API_KEY || "",
