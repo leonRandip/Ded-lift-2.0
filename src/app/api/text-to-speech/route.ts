@@ -2,6 +2,17 @@ import { NextRequest, NextResponse } from "next/server";
 import { ElevenLabsClient } from "@elevenlabs/elevenlabs-js";
 
 export async function POST(request: NextRequest) {
+  // Parse request body first so it's accessible in catch block
+  let body: { text?: string; voiceId?: string; modelId?: string };
+  try {
+    body = await request.json();
+  } catch (parseError) {
+    return NextResponse.json(
+      { error: "Invalid request body" },
+      { status: 400 }
+    );
+  }
+
   try {
     const apiKey = process.env.ELEVENLABS_API_KEY;
     
@@ -17,7 +28,6 @@ export async function POST(request: NextRequest) {
       apiKey: apiKey,
     });
 
-    const body = await request.json();
     // Using newer model available on free tier: eleven_turbo_v2_5 or eleven_turbo_v2
     const { text, voiceId = "21m00Tcm4TlvDq8ikWAM", modelId = "eleven_turbo_v2_5" } = body;
 
