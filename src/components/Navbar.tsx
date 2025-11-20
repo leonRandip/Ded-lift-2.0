@@ -30,8 +30,8 @@ export default function Navbar() {
       </button>
 
       {/* Compact Floating Navbar */}
-      <nav className="fixed top-4 left-4 right-20 md:left-1/2 md:right-auto md:-translate-x-1/2 z-40 liquid-glass-card rounded-full px-4 py-2.5 md:px-6 md:py-2.5 shadow-xl overflow-visible max-w-fit md:max-w-none flex items-center h-14">
-        <div className="flex items-center space-x-4 md:space-x-6">
+      <nav className="fixed top-4 left-4 right-20 md:left-1/2 md:right-auto md:-translate-x-1/2 z-40 liquid-glass-card rounded-full px-3 py-2 md:px-6 md:py-0 shadow-xl overflow-visible">
+        <div className="flex items-center space-x-2 md:space-x-6">
           {/* Logo */}
           <div className="flex items-center flex-shrink-0">
             <Image
@@ -44,22 +44,22 @@ export default function Navbar() {
           </div>
 
           {/* Navigation Links - Compact */}
-          <div className="flex items-center space-x-4 md:space-x-6">
+          <div className="flex items-center space-x-2 md:space-x-6">
             <Link
               href="/"
-              className="text-[var(--color-10)] hover:text-[var(--color-9)] font-medium transition-colors duration-300 text-sm"
+              className="text-[var(--color-10)] hover:text-[var(--color-9)] font-medium transition-colors duration-300 text-xs md:text-sm"
             >
               Home
             </Link>
             <Link
               href="#features"
-              className="text-[var(--color-9)] hover:text-[var(--color-10)] font-medium transition-colors duration-300 text-sm"
+              className="text-[var(--color-9)] hover:text-[var(--color-10)] font-medium transition-colors duration-300 text-xs md:text-sm"
             >
               Features
             </Link>
             <Link
               href="#pricing"
-              className="text-[var(--color-9)] hover:text-[var(--color-10)] font-medium transition-colors duration-300 text-sm"
+              className="text-[var(--color-9)] hover:text-[var(--color-10)] font-medium transition-colors duration-300 text-xs md:text-sm"
             >
               Pricing
             </Link>

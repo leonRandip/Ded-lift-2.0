@@ -12,15 +12,15 @@ interface MealDetailModalProps {
   onToggleFavorite?: () => void;
 }
 
-export default function MealDetailModal({ 
-  meal, 
-  onClose, 
+export default function MealDetailModal({
+  meal,
+  onClose,
   isFavorited: initialFavorited = false,
-  onToggleFavorite 
+  onToggleFavorite,
 }: MealDetailModalProps) {
   const [isFavorited, setIsFavorited] = useState(initialFavorited);
   const { speak, stop, isLoading, isPlaying } = useTextToSpeech();
-  
+
   const mealTypeLabels: Record<string, string> = {
     breakfast: "Breakfast",
     lunch: "Lunch",
@@ -67,12 +67,12 @@ export default function MealDetailModal({
         onClick={onClose}
       />
       {/* Modal */}
-      <div 
+      <div
         className="fixed inset-0 z-50 flex items-end md:items-center justify-center p-0 md:p-4"
         onClick={onClose}
       >
         <div
-          className="w-full md:w-full md:max-w-2xl liquid-glass-card rounded-t-3xl md:rounded-2xl overflow-hidden max-h-[90vh] overflow-y-auto"
+          className="w-full md:w-full md:max-w-2xl liquid-glass-card rounded-t-3xl md:rounded-2xl overflow-hidden max-h-[90vh] overflow-y-auto pb-5 md:pb-0"
           style={{
             backdropFilter: "blur(25px)",
             WebkitBackdropFilter: "blur(25px)",
@@ -136,7 +136,9 @@ export default function MealDetailModal({
                   >
                     <path d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                   </svg>
-                  <span className="text-sm text-[var(--color-10)]">{meal.preparationTime}</span>
+                  <span className="text-sm text-[var(--color-10)]">
+                    {meal.preparationTime}
+                  </span>
                 </div>
               )}
               <div className="flex items-center gap-2 text-[var(--color-10)]">
@@ -152,7 +154,9 @@ export default function MealDetailModal({
                   <path d="M17.657 18.657A8 8 0 016.343 7.343S7 9 9 10c0-2 .5-5 2.986-7C14 5 16.09 5.777 17.656 7.343A7.975 7.975 0 0120 13a7.975 7.975 0 01-2.343 5.657z"></path>
                   <path d="M9.879 16.121A3 3 0 1012.015 11L11 14H9c0 .768.293 1.536.879 2.121z"></path>
                 </svg>
-                <span className="text-sm text-[var(--color-10)]">{meal.calories}kcal</span>
+                <span className="text-sm text-[var(--color-10)]">
+                  {meal.calories}kcal
+                </span>
               </div>
               {meal.servingSize && (
                 <div className="flex items-center gap-2 text-[var(--color-10)]">
@@ -167,7 +171,9 @@ export default function MealDetailModal({
                   >
                     <path d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
                   </svg>
-                  <span className="text-sm text-[var(--color-10)]">{meal.servingSize}</span>
+                  <span className="text-sm text-[var(--color-10)]">
+                    {meal.servingSize}
+                  </span>
                 </div>
               )}
             </div>
@@ -202,7 +208,7 @@ export default function MealDetailModal({
             </div>
 
             {/* Action Buttons */}
-            <div className="flex gap-4 mt-6">
+            <div className="flex gap-4 mt-6 mb-20 md:mb-0">
               <button
                 onClick={handleFavoriteToggle}
                 className={`flex-1 flex items-center justify-center gap-2 px-6 py-3 rounded-xl font-medium transition-all ${
@@ -285,4 +291,3 @@ export default function MealDetailModal({
     </>
   );
 }
-

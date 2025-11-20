@@ -86,10 +86,10 @@ export default function ProgressChart() {
   return (
     <div className="liquid-glass-card p-4 md:p-6 rounded-3xl">
       {/* Tab Navigation */}
-      <div className="flex items-center space-x-3 mb-6">
+      <div className="flex items-center space-x-3 mb-6 overflow-x-auto pb-2 -mx-2 px-2 scrollbar-hide">
         <button
           onClick={() => setActiveTab("steps")}
-          className={`flex items-center space-x-2 px-5 py-2.5 rounded-full font-medium text-sm transition-all duration-300 ${
+          className={`flex items-center space-x-2 px-5 py-2.5 rounded-full font-medium text-sm transition-all duration-300 flex-shrink-0 ${
             activeTab === "steps"
               ? "bg-white/90 text-[var(--color-10)] shadow-md"
               : "bg-transparent text-[var(--color-8)] border border-white/30"
@@ -103,7 +103,7 @@ export default function ProgressChart() {
 
         <button
           onClick={() => setActiveTab("heart")}
-          className={`flex items-center space-x-2 px-5 py-2.5 rounded-full font-medium text-sm transition-all duration-300 ${
+          className={`flex items-center space-x-2 px-5 py-2.5 rounded-full font-medium text-sm transition-all duration-300 flex-shrink-0 ${
             activeTab === "heart"
               ? "bg-white/90 text-[var(--color-10)] shadow-md"
               : "bg-transparent text-[var(--color-8)] border border-white/30"
@@ -121,7 +121,7 @@ export default function ProgressChart() {
 
         <button
           onClick={() => setActiveTab("regularity")}
-          className={`flex items-center space-x-2 px-5 py-2.5 rounded-full font-medium text-sm transition-all duration-300 ${
+          className={`flex items-center space-x-2 px-5 py-2.5 rounded-full font-medium text-sm transition-all duration-300 flex-shrink-0 ${
             activeTab === "regularity"
               ? "bg-white/90 text-[var(--color-10)] shadow-md"
               : "bg-transparent text-[var(--color-8)] border border-white/30"

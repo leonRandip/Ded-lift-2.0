@@ -23,10 +23,11 @@ export default function ColorPalettePicker() {
 
   return (
     <div className="relative">
-      {/* Color Palette Button */}
+      {/* Color Palette Button - Aligned with navbar center */}
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="fixed top-4 right-4 z-50 w-14 h-14 md:w-14 md:h-14 liquid-glass-card rounded-full flex items-center justify-center hover:bg-white/30 transition-all duration-300"
+        className="fixed md:top-6 right-4 md:right-6 z-50 w-14 h-14 md:w-14 md:h-14 liquid-glass-card rounded-full flex items-center justify-center hover:bg-white/30 transition-all duration-300"
+        style={{ top: "calc(1rem + 0.5rem)" }}
       >
         <svg
           className="w-5 h-5 text-[var(--color-9)]"

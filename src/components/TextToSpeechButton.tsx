@@ -20,8 +20,8 @@ export default function TextToSpeechButton({
     // Stop any currently playing audio first
     stop();
     // Small delay to ensure stop completes
-    await new Promise(resolve => setTimeout(resolve, 100));
-    
+    await new Promise((resolve) => setTimeout(resolve, 100));
+
     const selectedText = getSelectedText();
     if (selectedText) {
       await speak(selectedText);
@@ -35,8 +35,8 @@ export default function TextToSpeechButton({
     // Stop any currently playing audio first
     stop();
     // Small delay to ensure stop completes
-    await new Promise(resolve => setTimeout(resolve, 100));
-    
+    await new Promise((resolve) => setTimeout(resolve, 100));
+
     const pageText = getPageText();
     if (pageText) {
       await speak(pageText);
@@ -92,7 +92,14 @@ export default function TextToSpeechButton({
               className="fixed inset-0 z-40"
               onClick={() => setShowMenu(false)}
             />
-            <div className="fixed bottom-20 left-4 right-4 md:absolute md:right-0 md:top-12 md:bottom-auto md:left-auto z-50 liquid-glass-card rounded-xl p-2 shadow-xl min-w-[200px]">
+            <div
+              className="absolute left-0 md:right-0 md:left-auto top-full md:top-12 mt-2 md:mt-0 z-50 liquid-glass-card rounded-xl p-2 shadow-xl min-w-[200px]"
+              style={{
+                backdropFilter: "blur(20px)",
+                WebkitBackdropFilter: "blur(20px)",
+                backgroundColor: "rgba(255, 255, 255, 0.01)",
+              }}
+            >
               {isPlaying ? (
                 <button
                   onClick={handleStop}
@@ -209,7 +216,14 @@ export default function TextToSpeechButton({
             className="fixed inset-0 z-40"
             onClick={() => setShowMenu(false)}
           />
-          <div className="fixed bottom-20 left-4 right-4 md:absolute md:right-0 md:top-12 md:bottom-auto md:left-auto z-50 liquid-glass-card rounded-xl p-2 shadow-xl min-w-[200px]">
+          <div
+            className="absolute left-0 md:right-0 md:left-auto top-full md:top-12 mt-2 md:mt-0 z-50 liquid-glass-card rounded-xl p-2 shadow-xl min-w-[200px]"
+            style={{
+              backdropFilter: "blur(30px)",
+              WebkitBackdropFilter: "blur(30px)",
+              backgroundColor: "rgba(255, 255, 255, 0.3)",
+            }}
+          >
             <button
               onClick={handleReadSelected}
               disabled={isLoading}
@@ -252,4 +266,3 @@ export default function TextToSpeechButton({
     </div>
   );
 }
-

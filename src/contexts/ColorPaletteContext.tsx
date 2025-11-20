@@ -72,6 +72,8 @@ export function ColorPaletteProvider({ children }: { children: ReactNode }) {
   const [palette, setPaletteState] = useState<ColorPalette>("green");
   const [theme, setThemeState] = useState<ThemeMode>("light");
   const initializedRef = useRef(false);
+  const paletteRef = useRef<ColorPalette>("green");
+  const themeRef = useRef<ThemeMode>("light");
 
   const updateBackgroundImage = (currentPalette: ColorPalette, currentTheme: ThemeMode) => {
     if (typeof window === "undefined") return;
@@ -100,6 +102,7 @@ export function ColorPaletteProvider({ children }: { children: ReactNode }) {
 
   const setPalette = (newPalette: ColorPalette) => {
     setPaletteState(newPalette);
+    paletteRef.current = newPalette; // Update ref
     // Update CSS variables
     if (typeof window !== "undefined") {
       const colors = colorPalettes[newPalette];
@@ -108,15 +111,16 @@ export function ColorPaletteProvider({ children }: { children: ReactNode }) {
         root.style.setProperty(`--color-${index + 1}`, color);
       });
       // Update background image
-      updateBackgroundImage(newPalette, theme);
+      updateBackgroundImage(newPalette, themeRef.current);
     }
   };
 
   const setTheme = (newTheme: ThemeMode) => {
     setThemeState(newTheme);
+    themeRef.current = newTheme; // Update ref
     // Update background image
     if (typeof window !== "undefined") {
-      updateBackgroundImage(palette, newTheme);
+      updateBackgroundImage(paletteRef.current, newTheme);
     }
   };
 
@@ -132,22 +136,15 @@ export function ColorPaletteProvider({ children }: { children: ReactNode }) {
       updateBackgroundImage(palette, theme);
       
       // Add resize handler to update background on window resize
+      // Use refs to always get the latest palette and theme values
       const handleResize = () => {
-        updateBackgroundImage(palette, theme);
+        updateBackgroundImage(paletteRef.current, themeRef.current);
       };
       window.addEventListener("resize", handleResize);
-      
-      // Prevent background from changing on scroll by re-applying on scroll
-      const handleScroll = () => {
-        // Re-apply background to ensure it stays fixed
-        updateBackgroundImage(palette, theme);
-      };
-      window.addEventListener("scroll", handleScroll, { passive: true });
       
       // Cleanup on unmount
       return () => {
         window.removeEventListener("resize", handleResize);
-        window.removeEventListener("scroll", handleScroll);
       };
     }
   }, []); // Only run once on mount
@@ -155,7 +152,7 @@ export function ColorPaletteProvider({ children }: { children: ReactNode }) {
   // Update background when palette or theme changes
   useLayoutEffect(() => {
     if (initializedRef.current) {
-      updateBackgroundImage(palette, theme);
+      updateBackgroundImage(paletteRef.current, themeRef.current);
     }
   }, [palette, theme]);
 
