@@ -32,9 +32,9 @@ export async function POST(request: NextRequest) {
     const audioStream = await client.textToSpeech.convert(voiceId, {
       text: text,
       modelId: modelId,
-      voice_settings: {
+      voiceSettings: {
         stability: 0.5,
-        similarity_boost: 0.75,
+        similarityBoost: 0.75,
       },
     });
 
