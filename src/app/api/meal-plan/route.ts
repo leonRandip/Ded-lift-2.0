@@ -33,9 +33,11 @@ export async function POST(request: NextRequest) {
     }
 
     // Add nutrients if provided
-    if (body.nutrients) {
+    if (body.nutrients && typeof body.nutrients === 'object') {
       Object.entries(body.nutrients).forEach(([key, value]) => {
-        params.append(`nutrients[${key}]`, value.toString());
+        if (value != null) {
+          params.append(`nutrients[${key}]`, String(value));
+        }
       });
     }
 
